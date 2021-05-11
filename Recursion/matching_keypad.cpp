@@ -11,9 +11,9 @@ void matching_keypad(char *output, char *input, int i, int j){
 
     //rec
     int digit = input[i]-'0';
-    if (digit==0){  //to pass null values
-        matching_keypad(output, input, i+1,j);
-    }
+//     if (digit==0){  //to pass null values
+//         matching_keypad(output, input, i+1,j);
+//     }
     for(int k=0; table[digit][k]!='\0';k++){
         output[j] = table[digit][k];
         matching_keypad(output, input, i+1,j+1);
