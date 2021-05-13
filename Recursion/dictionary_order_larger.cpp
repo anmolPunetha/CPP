@@ -2,29 +2,37 @@
 // lets use a single array and backtracking
 #include <iostream>
 #include <string>
-#include <algorithm>
+#include <set>
 using namespace std;
-// string main_s;
-void possible_permutations(string main_s,string input, int i){
+int count=0;
+int inc(){
+    count+=1;
+    return count;
+}
+void possible_permutations(string input, int i, set <string> &s){
     //base
     if(input[i]=='\0'){
-        if(input>main_s){
-            cout<<input<<endl;
-        }
+        string t(input);
+        s.insert(t);
         return;
     }
 
     //rec
     for(int j=i; input[j]!='\0';j++){
         swap(input[i], input[j]);
-        possible_permutations(main_s, input, i+1);
+        possible_permutations(input, i+1, s);
         swap(input[i], input[j]); //backtrack
     }
 }
 int main() {
     string str;
     cin>>str;
-    string main_s = str;
-    sort(str.begin(), str.end()); 
-    possible_permutations(main_s, str,0);
+    set <string> s;
+    possible_permutations(str,0, s);
+
+    for(auto it:s){
+        if (it>str){
+            cout<<it<<endl;
+        }
+    }
 }
