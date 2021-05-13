@@ -4,11 +4,7 @@
 #include <string>
 #include <set>
 using namespace std;
-int count=0;
-int inc(){
-    count+=1;
-    return count;
-}
+
 void possible_permutations(string input, int i, set <string> &s){
     //base
     if(input[i]=='\0'){
