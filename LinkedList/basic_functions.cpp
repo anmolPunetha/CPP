@@ -24,7 +24,6 @@ void insertAtTail(node* &head, int data){
     tail->next = new node(data);
     return ;
 }
-
 void print(node*head){
     while(head!=NULL){
         cout<<head->data<<"->";
@@ -34,8 +33,13 @@ void print(node*head){
 }
 int main() {
     node*head = NULL;
-    insertAtTail(head, 10);
-    insertAtTail(head, 20);
+    int n,k;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        int num;
+        cin>>num;
+        insertAtTail(head, num);
+    }
     print(head);
     return 0;
 }
