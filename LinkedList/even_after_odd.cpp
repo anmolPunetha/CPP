@@ -13,7 +13,7 @@ class node{
 
 void print(node*head){
     while(head!=NULL){
-        cout<<head->data<<"->";
+        cout<<head->data<<" ";
         head=head->next;
     }
     return;
@@ -34,30 +34,46 @@ void insertAtTail(node* &head, int data){
 }
 
 void even_after_odd(node*&head){
-    node*tail=head;
-    while(tail->next!=NULL){
-        tail=tail->next;
-    }
-    
-    //till head is odd
-    while((head->data)%2==0){
-        cout<<head->data<<endl;
-        node *n = head->next;
-        tail->next=head;
-        tail=tail->next;
-        head->next = NULL;
-        head=n;
+    node*oddstart=NULL;
+    node*evenstart=NULL;
+    node*oddend=NULL;
+    node*evenend=NULL;
+
+    node*temp = head;
+    while(temp!=NULL){
+        if(temp->data %2){
+            if(oddstart==NULL){
+                oddstart=temp;
+                oddend=oddstart;
+            }
+            else{
+                oddend->next=temp;
+                oddend=oddend->next;
+
+            }
+        }
+        else{
+            if(evenstart==NULL){
+                evenstart=temp;
+                evenend=evenstart;
+            }
+            else{
+                evenend->next=temp;
+                evenend=evenend->next;
+			}
+        }
+        temp=temp->next;
     }
 
-    //when middle num is even
-    node *temp=head->next;
-    while(temp->next!=NULL){
-        tail->next = temp;
-        head->next = temp->next;
-        temp->next=NULL;
-        tail=tail->next;
+	if(oddstart == NULL || evenstart == NULL){ //entire odd/ even
+        return;
     }
+    oddend->next=evenstart;
+    evenend->next=NULL;
+    head=oddstart;
+    return ;
 }
+
 
 int main() {
     node*head = NULL;
@@ -67,7 +83,7 @@ int main() {
         int num;
         cin>>num;
         insertAtTail(head, num);
-    }
+    }   
     even_after_odd(head);
     print(head);
     return 0;
