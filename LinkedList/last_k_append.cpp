@@ -34,9 +34,7 @@ void print(node*head){
 }
 
 void k_append(node *&head, int k, int n){
-    if(k>=n){
-        return;
-    }
+
     int node_num=n-k;
     node *temp=head;
     for(int i=1;i<node_num;i++){
@@ -63,6 +61,7 @@ int main() {
     }
 
     cin>>k;
+	k=k%n;//added to make k<n...vo ek cycle m honge!!
     k_append(head, k, n);
     print(head);
     return 0;
