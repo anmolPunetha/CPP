@@ -33,7 +33,7 @@ void print(node*head){
     return;
 }
 
-node* merge_sorted_ll(node* a, node* b){
+node* merge_sorted_ll(node* &a, node* &b){
     //base
     if(a==NULL){
         return b;
@@ -43,7 +43,7 @@ node* merge_sorted_ll(node* a, node* b){
     }
     //rec
     node*c;
-    if(a->data < b->data){
+    if((a->data) < (b->data)){
         c=a;
         c->next = merge_sorted_ll(a->next, b);
     }
@@ -55,11 +55,13 @@ node* merge_sorted_ll(node* a, node* b){
 }
 
 int main() {
-    node*head = NULL;
-    node*head2=NULL;
+
     int t;
     cin>>t;
     for(int times=0;times<t;times++){
+
+		node*head = NULL;
+        node*head2=NULL;
         int n1;
         cin>>n1;
         for(int i=0;i<n1;i++){
@@ -77,6 +79,7 @@ int main() {
         }
     node * result = merge_sorted_ll(head, head2);
     print(result);
+	cout<<"\n";//added
     }
     return 0;
 }
