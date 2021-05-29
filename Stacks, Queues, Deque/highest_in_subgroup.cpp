@@ -1,12 +1,17 @@
 //pure application of deque
 
 #include <iostream>
-#include <deque>
+#include<deque>
 using namespace std;
 
 int main() {
+    // these two lines are used for fast input and output in CP (printf, scanf)
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    
     int n;
-    int a[100000];
+	int x = 10000000;
+	int *a = new int[x];
     int k;
     
     cin>>n;
