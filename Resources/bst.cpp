@@ -31,6 +31,22 @@ node* insertInBST(node *root,int data){
     return root;
 }
 
+bool search(node*root,int data){
+    if(root==NULL){
+        return false;
+    }
+    if(root->data==data){
+        return true;
+    }
+    //Recursively search in left and right subtree
+    if(data<=root->data){
+        return search(root->left,data);
+    }
+    else{
+        return search(root->right,data);
+    }
+}
+
 node* build(){
     //Read a list of numbers till -1 and also these numbers will be inserted into BST
     int d;
@@ -83,11 +99,61 @@ void inorder(node*root){
     inorder(root->right);
 }
 
+node* deleteInBST(node*root,int data){
+    if(root==NULL){
+        return NULL;
+    }
+    else if(data<root->data){
+        root->left = deleteInBST(root->left,data);
+        return root; 
+    }
+    else if(data==root->data){
+        //Found the node to delete 3 Cases
+        //1. Node with 0 children - Leaf Node
+        if(root->left==NULL && root->right==NULL){
+            delete root;
+            return NULL;
+        }
+        //2. Case Only 1 child
+            if(root->left!=NULL && root->right==NULL){
+                node* temp = root->left;
+                delete root;
+                return temp;
+            }
+            if(root->right!=NULL && root->left==NULL){
+                node* temp = root->right;
+                delete root;
+                return temp;
+            }
+        //3. Case 2 children
+            node *replace = root->right;
+            //Find the inorder successor from right subtree
+            while(replace->left!=NULL){
+                replace = replace->left;
+            }
+            root->data = replace->data;
+            root->right = deleteInBST(root->right,replace->data);
+            return root;
+    }
+    else{
+        root->right = deleteInBST(root->right,data);
+        return root;
+    }
+}
+
 int main(){ 
     node*root = build();
     inorder(root);
     cout<<endl;
+    
+    int s;
+    cin>>s;
+    root = deleteInBST(root,s);
+    inorder(root);
+    cout<<endl;
     bfs(root);
 
+
+    
 return 0;
 }
