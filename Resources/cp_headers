@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+#define mp make_pair
+#define pb push_back
+#define d double
+#define FAST ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+signed main()
+{ return 0; //Omitted the rest of the code
+}
